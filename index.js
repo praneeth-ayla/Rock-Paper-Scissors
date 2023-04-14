@@ -25,19 +25,38 @@ function singleRound(computerSelection, playerSelection) {
 }
 
 
-let playerSelection = "rock"
-const computerSelection = getComputerChoice();
-console.log(computerSelection)
-
-function playRound(computerSelection, playerSelection) {
-    const result = singleRound(computerSelection, playerSelection);
-    if (result === "Tie!") {
-        console.log("It's a Tie!")
-    } else if (result === "Won!") {
-        console.log(`You ${result}, ${playerSelection} beats ${computerSelection}`)
-    } else {
-        console.log(`You ${result}, ${computerSelection} beats ${playerSelection}`)
+let runLoop =prompt("How many rounds do you want to play:")
+function playRound() {
+    let playerCount = 0;
+    let computerCount = 0;
+    let tie= 0;
+    for (let i=0; i<runLoop; i++){
+        let playerSelection = prompt("Chose ROCK PAPER SCISSORS").toLowerCase();
+        const computerSelection = getComputerChoice();
+        const result = singleRound(computerSelection, playerSelection);
+        if (result === "Tie!") {
+            tie+= 1
+        } else if (result === "Won!") {
+            playerCount+= 1
+        } else {
+            computerCount+= 1
+        }
     }
+    if (playerCount > computerCount) {
+        return `You Won!, your score is ${playerCount}, computer score is ${computerCount} and ties are ${tie}`
+    } else if (playerCount < computerCount) {
+        return `You Won!, your score is ${computerCount}, computer score is ${playerCount} and ties are ${tie}`
+    } else { 
+        return `It's a Tie! score`
+    }
+
 }
 
-playRound(computerSelection, playerSelection);
+
+
+
+
+let result=playRound()
+console.log(result)
+
+
